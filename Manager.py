@@ -9,11 +9,11 @@ while 1:
     command = input("*type ")
     if command.split(' ')[0] == "mk_dir":
         new_dir = command.split(' ')[1]
-        Primitive_FM.make_dir(new_dir)
+        Primitive_FM.mk_dir(new_dir)
 
     elif command.split(' ')[0] == "dl_dir":
         dir_name = command.split(' ')[1]
-        Primitive_FM.del_dir(dir_name)
+        Primitive_FM.dl_dir(dir_name)
 
     elif command.split(' ')[0] == "ch_dir":
         dir_name = command.split(' ')[1]
@@ -21,20 +21,20 @@ while 1:
 
     elif command.split(' ')[0] == "mk_file":
         f_name = command.split(' ')[1]
-        Primitive_FM.make_file(f_name)
+        Primitive_FM.mk_file(f_name)
 
     elif command.split(' ')[0] == "w_file":
         f_name = command.split(' ')[1]
         text = ' '.join(command.split(' ')[2:])
-        Primitive_FM.write_file(f_name, text)
+        Primitive_FM.w_file(f_name, text)
 
     elif command.split(' ')[0] == "r_file":
         f_name = command.split(' ')[1]
-        Primitive_FM.read_file(f_name)
+        Primitive_FM.r_file(f_name)
 
     elif command.split(' ')[0] == "dl_file":
         f_name = command.split(' ')[1]
-        Primitive_FM.del_file(f_name)
+        Primitive_FM.dl_file(f_name)
 
     elif command.split(' ')[0] == "copy_file":
         cur_path = command.split(' ')[1]
@@ -56,7 +56,7 @@ while 1:
 
     elif command == "l_s":
         print("Contents of the current folder: ")
-        Primitive_FM.tree_list()
+        Primitive_FM.l_s()
 
     elif command == "help":
         Primitive_FM.my_help()
