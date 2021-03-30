@@ -18,7 +18,7 @@ class File_Manager:
 
     # Справка
     def my_help(self):
-        print("Welcome to в File_Manager. Main fuctions:\n")
+        print("Welcome to File_Manager. Main fuctions:\n")
         print("exit                          Exit File_Manager")
         print("mk_dir [name]                 Create a folder by name")
         print("ch_dir [name]                 Moving between folders")
@@ -39,8 +39,8 @@ class File_Manager:
 
     # Показать структуру
     def l_s(self):
-        if os.listdir(path=self.cur_dir):
-            for i in os.listdir(path=self.cur_dir):
+        if os.listdir(path=self.my_cur_dir):
+            for i in os.listdir(path=self.my_cur_dir):
                 print(i)
         else:
             print("WARNING!! The folder is empty.")
@@ -68,16 +68,16 @@ class File_Manager:
         try:
             if len(path) != 0:
                 if path == "..":
-                    if self.my_latest_dir in str(self.cur_dir.parent):
-                        os.chdir(self.cur_dir.parent)
-                        self.cur_dir = self.MY_WORK_DIR.joinpath(self.cur_dir.parent)
-                        print("Current path: ", self.cur_dir)
+                    if self.my_latest_dir in str(self.my_cur_dir.parent):
+                        os.chdir(self.my_cur_dir.parent)
+                        self.my_cur_dir = self.MY_WORK_DIR.joinpath(self.my_cur_dir.parent)
+                        print("Current path: ", self.my_cur_dir)
                     else:
                         print("WARNING!! Unable to go outside the working folder!")
                 else:
                     os.chdir(path)
-                    self.cur_dir = self.MY_WORK_DIR.joinpath(path)
-                    print("Current path:", self.cur_dir)
+                    self.my_cur_dir = self.MY_WORK_DIR.joinpath(path)
+                    print("Current path:", self.my_cur_dir)
         except FileNotFoundError:
             print("WARNING!! The folder not found")
         except OSError:
@@ -97,7 +97,7 @@ class File_Manager:
     # Запись в файл
     def w_file(self, path, inner):
         try:
-            self.cur_dir.joinpath(path).write_text(inner)
+            self.my_cur_dir.joinpath(path).write_text(inner)
             print(f"Text '{inner}' successfully added into the {path}.")
         except FileNotFoundError:
             print("WARNING!! The file not found")
@@ -106,7 +106,7 @@ class File_Manager:
     def r_file(self, path):
         try:
             if os.path.exists(path):
-                print(str(self.cur_dir.joinpath(path).read_text()))
+                print(str(self.my_cur_dir.joinpath(path).read_text()))
             else:
                 print("WARNING!! The file not found")
         except OSError:
@@ -116,7 +116,7 @@ class File_Manager:
     def dl_file(self, path):
         try:
             if os.path.exists(path):
-                os.remove(self.cur_dir.joinpath(path))
+                os.remove(self.my_cur_dir.joinpath(path))
                 print(f'The file {path} was removed.')
             else:
                 print("WARNING!! The file not found")
@@ -149,7 +149,7 @@ class File_Manager:
     def re_file(self, path, new_name):
         try:
             if os.path.exists(path):
-                self.cur_dir.joinpath(path).rename(new_name)
+                self.my_cur_dir.joinpath(path).rename(new_name)
                 print(f"File renamed to {new_name}")
             else:
                 print("WARNING!! The file not found")
